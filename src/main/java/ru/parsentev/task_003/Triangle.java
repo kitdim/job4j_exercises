@@ -10,7 +10,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  * TODO: comment
  *
  * @author parsentev
- * @since 28.07.2016
+ * @since 28.07.2016Ignore
  */
 public class Triangle {
     private static final Logger log = getLogger(Triangle.class);
@@ -19,17 +19,35 @@ public class Triangle {
     protected final Point second;
     protected final Point third;
 
-    public Triangle(final Point first, final Point second, final Point third) {
+    protected final double a;
+    protected final double b;
+    protected final double c;
+
+    public Triangle(final Point first,
+                    final Point second,
+                    final Point third) {
         this.first = first;
         this.second = second;
         this.third = third;
+
+        a = this.first.distanceTo(this.second);
+        b = this.second.distanceTo(this.third);
+        c = this.third.distanceTo(this.first);
     }
 
     public boolean exists() {
-        throw new UnsupportedOperationException();
+        if (a + b > c && b + c > a && c + a > b) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public double area() {
-        throw new UnsupportedOperationException();
+        if (!exists()) {
+            throw new IllegalStateException();
+        }
+        double p = (a + b + c) / 2;
+        return Math.round(Math.sqrt(p * (p - a) * (p - b) * (p - c)));
     }
 }
