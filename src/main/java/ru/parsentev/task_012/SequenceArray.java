@@ -20,6 +20,21 @@ public class SequenceArray {
     }
 
     public boolean containsOneSequence() {
-        throw new UnsupportedOperationException();
+        boolean flag = true;
+        int count = 0;
+        for (var item : values) {
+            if (item == 1) {
+                count++;
+                if (count == 3) {
+                    flag = true;
+                    break;
+                }
+            }
+            else {
+                count = 0;
+                flag = false;
+            }
+        }
+        return flag;
     }
 }
