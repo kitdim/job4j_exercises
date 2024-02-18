@@ -21,6 +21,16 @@ public class MonoArray {
     }
 
     public boolean exists() {
-        throw new UnsupportedOperationException();
+        boolean flag = false;
+        int tempItem = values[0];
+        for (var item : values) {
+            if (item != tempItem) {
+                flag = false;
+                break;
+            } else {
+                flag = true;
+            }
+        }
+        return flag;
     }
 }
